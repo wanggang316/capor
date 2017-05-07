@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rubyzip',         '~> 1.0', '>= 1.0.0'
   s.add_dependency 'plist',           '~> 3.3'
   s.add_dependency 'terminal-table',  '~> 1.7', '>= 1.7.3'
+  s.add_dependency 'CFPropertyList', '~> 2.3'
+
 
 
   s.bindir = 'bin'
