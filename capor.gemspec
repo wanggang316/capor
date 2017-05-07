@@ -21,6 +21,8 @@ Gem::Specification.new do |s|
 
 
   s.bindir = 'bin'
+  s.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+
 
 
 end
