@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'capor'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2017-05-06'
   s.summary     = 'Capor is command line tool for parser iOS .ipa file.'
   s.description = 'Capor is command line tool for parser iOS .ipa file, you cat the ipa package info like cat a file.'
