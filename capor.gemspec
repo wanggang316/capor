@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'capor'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.date        = '2017-05-07'
   s.summary     = 'Capor is command line tool for parser iOS .ipa file.'
   s.description = 'Capor is command line tool for parser iOS .ipa file, you cat the ipa package info like cat a file.'
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.homepage    = 'https://www.github.com/wanggang316/capor'
 
-  s.files       = 'lib/capor.rb'
+
 
   s.add_dependency 'commander',       '~> 4.3'
   s.add_dependency 'rubyzip',         '~> 1.0', '>= 1.0.0'
@@ -21,6 +21,8 @@ Gem::Specification.new do |s|
 
 
   s.bindir = 'bin'
+  s.files         = `git ls-files -z`.split("\x0")
+  s.require_paths = ["lib"]
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
 
 
