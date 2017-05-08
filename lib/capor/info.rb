@@ -26,8 +26,15 @@ command :info do |c|
 
     puts "----> #{File.basename(@file, File.extname(@file))}.app"
 
+
+  end
+
+
+
+  # read
+  def readFile(file)
     # find .app entry
-    Zip::File.open(@file) do |zipfile|
+    Zip::File.open(file) do |zipfile|
       puts zipfile
       app_entry = zipfile.find_entry("Payload/#{File.basename(@file, File.extname(@file))}.app")
       info_entry = zipfile.find_entry("#{app_entry.name}embedded.mobileprovision") if app_entry
@@ -67,33 +74,40 @@ command :info do |c|
         plist ||= CFPropertyList.native_types(
             CFPropertyList::List.new(file: temp_info_plist).value)
 
-        table = Terminal::Table.new do |t|
-          plist.each do |key, value|
-            next if key == "DeveloperCertificates"
-
-            columns = []
-            columns << key
-            columns << case value
-                       when Hash
-                         value.collect{|k, v| "#{k}: #{v}"}.join("\n")
-                       when Array
-                         value.join("\n")
-                       else
-                         value.to_s
-                       end
-
-            t << columns
-            t << :separator
-
-          end
-        end
-
-        puts table
+        # print
+        printPlist(plist)
       end
-
     end
 
   end
+
+
+  # print
+  def printPlist(plist)
+      table = Terminal::Table.new do |t|
+        plist.each do |key, value|
+          next if key == "DeveloperCertificates"
+
+          columns = []
+          columns << key
+          columns << case value
+                     when Hash
+                       value.collect{|k, v| "#{k}: #{v}"}.join("\n")
+                     when Array
+                       value.join("\n")
+                     else
+                       value.to_s
+                     end
+
+          t << columns
+          t << :separator
+
+        end
+      end
+      puts table
+  end
+
+
 
 
   def determine_file!
